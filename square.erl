@@ -23,17 +23,14 @@
                 P3 :: point(),
                 P4 :: point()) -> boolean()).
 is_square(P1,P2,P3,P4) ->
-    case lists:usort([P1,P2,P3,P4]) of
-        [_,_,_,_] = L ->
-            lists:all(fun(Pd) -> case lists:usort(Pd) of
+    L = [P1,P2,P3,P4],
+    ValidPointDists = fun(Pd) -> case lists:usort(Pd) of
                                      [_Zero, SideLenSq, DiagonalSq] ->
                                          (SideLenSq * 2) == DiagonalSq;
                                      _ -> false
                                  end
                       end,
-                      [[point_dist_sq(Pa, Pb) || Pb <- L] || Pa <- L]);
-        _ -> false
-    end.
+    lists:all(ValidPointDists, [[point_dist_sq(Pa, Pb) || Pb <- L] || Pa <- L]).
 
 %%%===================================================================
 %%% Internal functions
