@@ -6,7 +6,13 @@ http://olimex.wordpress.com/2013/09/27/weekend-programming-challenge-week-26-squ
 
 How to run:
 ------------
+
+```bash
 erlc square.erl
 erl
+```
+
+```erlang
 square:tests().
 square:is_square({0,0},{1,0},{1,1},{0,1}).
+```
